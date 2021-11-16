@@ -33,9 +33,36 @@ def attack(o_index: int, p_index):
         sys.exit()
 
 
-enemy_adjectives: List[str] = "Addicted;Alarming;Addled;Agile;Aggressive;Apathetic;Angry;Antagonistic;Arch;Astute;Adversarial;Abhorrent;Abominable;Bloody;Brooding;Brave;Brazen;Broken;Base;Baleful;Confrontational;Clever;Cursed;Condemnable;Cryptic;Creepy;Craven;Caustic;Chaotic;Celestial;Dark;Dread;Disgruntled;Disgraced;Destitute;Disguised;Drunk;Dire;Dastardly;Disgusting;Disquieting;Dishonored;Depth Dwelling;Distinguished;Desperate;Detestable;Excommunicated;Excited;Enterprising;Eerie;Frost;Fire;Frightening;Forbidding;Fun-loving;Fiendish;Friendly;Fearsome;Furry;Fallen;Feeble;Frozen;Fabled;Fell;Futuristic;Frantic;Frenzied;Fearsome;Foreboding;Formidable;Forgotten;Ghoulish;Gruesome;Gloom;Horrendous;Hypnotized;Hateful;Improper;Impure;Impeccable;Intoxicated;Intolerable;Intelligent;Impolite;Imperfect;Incarcerated;Inflamed;Loathsome;Monumental;Menacing;Merciless;Massive;Magnanimous;Nightmarish;Organized;Orwellian;Ornery;Odious;Overqualified;Ostentatious;Opportunistic;Perilous;Predatory;Phase;Productive;Playful;Seductive;Scary;Spine-chilling;Special Needs;Soul Devouring;Sultry;Swollen;Serious;Secret;Shadow;Reptilian;Revolting;Repugnant;Threatening;Terrible;Troubling;Towering;Unhappy;Uncooperative;Unhealthy;Unhelpful;Untoward;Unholy;Unethical;Unprincipled;Unscrupulous;Undead;Were;Zombified".split(';')
-# enemy_nouns: List[str] = "Angels;Adult Maggots;Archers;Accountants;Agents;Arsonists;Anteaters;Bunnies;Badgers;Boars;Baboons;Bears;Bishops;Beetles;Basilisks;Bishops;Brigands;Bandits;Banshee;Beholders;Behemoths;Bugbears;Bigfoots;Barbarians;Chickens;Cyclops;Chimeras;Crocodiles;Crickets;Chameleons;Donkeys;Dwarfs;Devils;Demigods;Demons;Dryads;Executioners;Enchanters;Frogs;Fiends;Giant Ants;Ghosts;Gnomes;Goblins;Gophers;Giants;Gorgons;Griffins;Gargoyles;Ghouls;Golems;Harpies;Hydras;Hell Hounds;Hornets;Hostesses;Hags;Hippies;Iquanas;Kobolds;Kraken;Kelpies;Land Octopi;Lich Kings;Leviathans;Lizards;Librarians;Leeches;Lawyers;Lay Persons;Jabberwockies;Medusas;Manticores;Minotaurs;Mummies;Mimics;Mummies;Morticians;Mermaids;Mud Worms;Man Beasts;Mongrels;Nymphs;Nightshades;Necromancers;Ogres;Orcs;Phasms;Phantoms;Reapers;Snakes;Skeletons;Spiders;Slugs;Students;Serpents;Sasquatch;Slimes;Skinheads;Silkies;Snipers;Sorcerers;Succubi;Sphinx;Toads;Trolls;Thieves;Unicorns;Vampires;Weasels;Wombats;Wolves;Wasps;Weretoads;Werebeavers;Werewombats;Werefruitflies;Wizards;Warlocks;Wargs;Wyverns;Wraiths;Witches;Warriors;Yetis;Zealots;Zombies".split(';')
-enemy_nouns: List[str] = "IRegretzu;twigglesmang;zkill_hero;doogstream".split(';')
+enemy_adjectives: List[str] = "Addicted;Alarming;Addled;Agile;Aggressive;Apathetic;Angry;Antagonistic;Arch;Astute" \
+                              ";Adversarial;Abhorrent;Abominable;Bloody;Brooding;Brave;Brazen;Broken;Base;Baleful" \
+                              ";Confrontational;Clever;Cursed;Condemnable;Cryptic;Creepy;Craven;Caustic;Chaotic" \
+                              ";Celestial;Dark;Dread;Disgruntled;Disgraced;Destitute;Disguised;Drunk;Dire;Dastardly" \
+                              ";Disgusting;Disquieting;Dishonored;Depth " \
+                              "Dwelling;Distinguished;Desperate;Detestable;Excommunicated;Excited;Enterprising;Eerie" \
+                              ";Frost;Fire;Frightening;Forbidding;Fun-loving;Fiendish;Friendly;Fearsome;Furry;Fallen" \
+                              ";Feeble;Frozen;Fabled;Fell;Futuristic;Frantic;Frenzied;Fearsome;Foreboding;Formidable" \
+                              ";Forgotten;Ghoulish;Gruesome;Gloom;Horrendous;Hypnotized;Hateful;Improper;Impure" \
+                              ";Impeccable;Intoxicated;Intolerable;Intelligent;Impolite;Imperfect;Incarcerated" \
+                              ";Inflamed;Loathsome;Monumental;Menacing;Merciless;Massive;Magnanimous;Nightmarish" \
+                              ";Organized;Orwellian;Ornery;Odious;Overqualified;Ostentatious;Opportunistic;Perilous" \
+                              ";Predatory;Phase;Productive;Playful;Seductive;Scary;Spine-chilling;Special Needs;Soul " \
+                              "Devouring;Sultry;Swollen;Serious;Secret;Shadow;Reptilian;Revolting;Repugnant" \
+                              ";Threatening;Terrible;Troubling;Towering;Unhappy;Uncooperative;Unhealthy;Unhelpful" \
+                              ";Untoward;Unholy;Unethical;Unprincipled;Unscrupulous;Undead;Were;Zombified".split(';')
+# enemy_nouns: List[str] = "Angels;Adult Maggots;Archers;Accountants;Agents;Arsonists;Anteaters;Bunnies;Badgers;Boars
+# ;Baboons;Bears;Bishops;Beetles;Basilisks;Bishops;Brigands;Bandits;Banshee;Beholders;Behemoths;Bugbears;Bigfoots
+# ;Barbarians;Chickens;Cyclops;Chimeras;Crocodiles;Crickets;Chameleons;Donkeys;Dwarfs;Devils;Demigods;Demons;Dryads
+# ;Executioners;Enchanters;Frogs;Fiends;Giant
+# Ants;Ghosts;Gnomes;Goblins;Gophers;Giants;Gorgons;Griffins;Gargoyles;Ghouls;Golems;Harpies;Hydras;Hell
+# Hounds;Hornets;Hostesses;Hags;Hippies;Iquanas;Kobolds;Kraken;Kelpies;Land Octopi;Lich
+# Kings;Leviathans;Lizards;Librarians;Leeches;Lawyers;Lay
+# Persons;Jabberwockies;Medusas;Manticores;Minotaurs;Mummies;Mimics;Mummies;Morticians;Mermaids;Mud Worms;Man
+# Beasts;Mongrels;Nymphs;Nightshades;Necromancers;Ogres;Orcs;Phasms;Phantoms;Reapers;Snakes;Skeletons;Spiders;Slugs
+# ;Students;Serpents;Sasquatch;Slimes;Skinheads;Silkies;Snipers;Sorcerers;Succubi;Sphinx;Toads;Trolls;Thieves
+# ;Unicorns;Vampires;Weasels;Wombats;Wolves;Wasps;Weretoads;Werebeavers;Werewombats;Werefruitflies;Wizards;Warlocks
+# ;Wargs;Wyverns;Wraiths;Witches;Warriors;Yetis;Zealots;Zombies".split(';')
+
+enemy_nouns: List[str] = "IRegretzu;twigglesmang;zkill_hero;doogstream;steve".split(';')
 
 
 def create_enemy_name() -> str:
@@ -69,3 +96,5 @@ if __name__ == '__main__':
             attack(opp_index, i)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+# TODO: Add docstrings

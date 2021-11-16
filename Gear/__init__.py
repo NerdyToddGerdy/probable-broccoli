@@ -195,16 +195,16 @@ def get_random_name() -> str:
 
 
 class Item:
-    def __init__(self, level: int, name: str = 'empty', quality_level: int = 1, armor=0):
-        self.name: str = name
+    def __init__(self, level: int, quality_level: int = 1, armor=0):
+        self.name: str = get_random_name()
         self.quality_level: int = quality_level
         self.armor: int = armor
         self.level: int = level
 
 
 class Weapon(Item):
-    def __init__(self, level: int, name=get_random_name(), quality_level=1):
-        super().__init__(level, name=name, quality_level=quality_level, armor=0)
+    def __init__(self, level: int, quality_level=1):
+        super().__init__(level, quality_level=quality_level)
         self.damage = self.calculate_damage()
         self.quality_name = get_quality(quality_level)
 
@@ -212,10 +212,22 @@ class Weapon(Item):
         return self.level * self.quality_level
 
 
+class Armor(Item):
+    def __init__(self, level: int, quality_level=1):
+        super(Armor, self).__init__(level, quality_level=quality_level)
+        self.armor = self.calculate_armor()
+        self.quality_name = get_quality(quality_level)
+
+    def calculate_armor(self):
+        return self.quality_level * self.level
+
+
 class Inventory:
-    def __init__(self, weapon=Weapon(1), armor=Item(0), helmet=Item(0), boots=Item(0), trinket=Item(0)):
+    def __init__(self, weapon=Weapon(1), chest=Armor(1), helmet=Armor(2), boots=Armor(3), trinket=Item(4)):
         self.weapon: Weapon = weapon
-        self.armor: Item = armor
-        self.helmet: Item = helmet
-        self.boots: Item = boots
+        self.chest: Armor = chest
+        self.helmet: Armor = helmet
+        self.boots: Armor = boots
         self.trinket: Item = trinket
+
+# TODO: Add docstrings
