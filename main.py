@@ -51,7 +51,7 @@ if __name__ == '__main__':
     player_list: List[Player] = [
         Player('Todd', "A", health=30),
     ]
-    player_list[0].set_weapon(quality='super', damage=5)
+    player_list[0].set_weapon(4, quality_level=5)
     player_list[0].view_inventory()
     enemy_count = randint(2, 5)
     for num in range(enemy_count):

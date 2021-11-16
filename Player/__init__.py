@@ -1,4 +1,4 @@
-from Gear import Inventory, Weapon, get_random_name
+from Gear import Inventory, Weapon, get_random_name, get_quality
 
 
 class Player:
@@ -14,8 +14,11 @@ class Player:
         print(f"HELMET: {self.inventory.helmet.name}")
         print(f"ARMOR: {self.inventory.armor.name}")
         print(f"WEAPON: {self.inventory.weapon.name}")
+        print(f"WEAPON QUALITY: {get_quality(self.inventory.weapon.quality_level)}")
+        print(f"WEAPON DAMAGE: {self.inventory.weapon.damage}")
         print(f"BOOTS: {self.inventory.boots.name}")
         print(f"TRINKET: {self.inventory.trinket.name}")
 
-    def set_weapon(self, quality=None, damage=None, name=get_random_name()):
-        self.inventory.weapon = Weapon(quality=quality, damage=damage, name=name, )
+    def set_weapon(self, level, quality_level: int = None, damage=None, name=get_random_name()):
+        self.inventory.weapon = Weapon(level, quality_level=quality_level, name=name)
+

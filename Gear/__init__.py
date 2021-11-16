@@ -1,36 +1,219 @@
 from random import randint
 from typing import List
 
-WEAPON_ADJECTIVE_LIST: List[str] = "Ancient Archaic Astral Aged Antiquated Blessed Corrupt Devilish Evil Hallowed Holy Ethereal Forgotten Forbidden Heirloom Mystic Malevolent Rare Spectral Seraphic Sanctified Treasured Timeworn Unusual Unique Wicked".split(' ')
-WEAPON_NAME_LIST: List[str] = "Amulet;Bones;Bracelet;Book;Coin;Chalice;Claw;Charm;Carving;Diadem;Dagger;Etching;Emblem;Figurine;Gold Tooth;Goblet;Earring;Horn;Idol;Knife;Mask;Necklace;Parchment;Pottery;Scroll;Skull;Stein;Totem;Trinket;Talisman;Vial;Vase".split(';')
+GEAR_ADJECTIVE_LIST: List[str] = "Ancient Archaic Astral Aged Antiquated Blessed Corrupt Devilish Evil Hallowed " \
+                                   "Holy Ethereal Forgotten Forbidden Heirloom Mystic Malevolent Rare Spectral " \
+                                   "Seraphic Sanctified Treasured Timeworn Unusual Unique Wicked".split(' ')
+
+GEAR_NAME_LIST: List[str] = "Amulet;Bones;Bracelet;Book;Coin;Chalice;Claw;Charm;Carving;Diadem;Dagger;Etching" \
+                              ";Emblem;Figurine;Gold " \
+                              "Tooth;Goblet;Earring;Horn;Idol;Knife;Mask;Necklace;Parchment;Pottery;Scroll;Skull" \
+                              ";Stein;Totem;Trinket;Talisman;Vial;Vase".split(';')
+
+
+def wretched():
+    return "Wretched"
+
+
+def garbage():
+    return "Garbage"
+
+
+def pathetic():
+    return "Pathetic"
+
+
+def flawed():
+    return "Flawed"
+
+
+def lesser():
+    return "Lesser"
+
+
+def inferior():
+    return "Inferior"
+
+
+def plain():
+    return "Plain"
+
+
+def common():
+    return "Common"
+
+
+def standard():
+    return "Standard"
+
+
+def refined():
+    return "Refined"
+
+
+def premium():
+    return "Premium"
+
+
+def superior():
+    return "Superior"
+
+
+def pristine():
+    return "Pristine"
+
+
+def perfect():
+    return "Perfect"
+
+
+def flawless():
+    return "Flawless"
+
+
+def heroic():
+    return "Heroic"
+
+
+def historic():
+    return "Historic"
+
+
+def fabled():
+    return "Fabled"
+
+
+def mythical():
+    return "Mythical"
+
+
+def sublime():
+    return "Sublime"
+
+
+def sacred():
+    return "Sacred"
+
+
+def glorius():
+    return "Glorious"
+
+
+def divine():
+    return "Divine"
+
+
+def godlike():
+    return "Godlike"
+
+
+def immortal():
+    return "Immortal"
+
+
+def eternal():
+    return "Eternal"
+
+
+def ethereal():
+    return "Ethereal"
+
+
+def astral():
+    return "Astral"
+
+
+def celestial():
+    return "Celestial"
+
+
+def cosmic():
+    return "Cosmic"
+
+
+def galactic():
+    return "Galactic"
+
+
+def transcendent():
+    return "Transcendent"
+
+
+def unique():
+    return "Unique"
+
+
+def default():
+    return "ERROR"
+
+
+quality_switcher = {
+    1: wretched,
+    2: garbage,
+    3: pathetic,
+    4: flawed,
+    5: lesser,
+    6: inferior,
+    7: plain,
+    8: common,
+    9: standard,
+    10: refined,
+    11: premium,
+    12: superior,
+    13: pristine,
+    14: perfect,
+    15: flawless,
+    16: heroic,
+    17: historic,
+    18: fabled,
+    19: mythical,
+    20: sublime,
+    21: sacred,
+    22: glorius,
+    23: divine,
+    24: godlike,
+    25: immortal,
+    26: eternal,
+    27: ethereal,
+    28: astral,
+    29: celestial,
+    30: cosmic,
+    31: galactic,
+    32: transcendent,
+    40: unique
+}
+
+
+def get_quality(quality_level):
+    return quality_switcher.get(quality_level, default)()
 
 
 def get_random_name() -> str:
-    adj = WEAPON_ADJECTIVE_LIST[randint(0, len(WEAPON_ADJECTIVE_LIST) - 1)]
-    noun = WEAPON_NAME_LIST[randint(0, len(WEAPON_NAME_LIST) - 1)]
+    adj = GEAR_ADJECTIVE_LIST[randint(0, len(GEAR_ADJECTIVE_LIST) - 1)]
+    noun = GEAR_NAME_LIST[randint(0, len(GEAR_NAME_LIST) - 1)]
     return f"{adj} {noun}"
 
 
 class Item:
-    def __init__(self, name: str = 'empty', quality: str = 'empty', damage: int = 1, armor=0):
+    def __init__(self, level: int, name: str = 'empty', quality_level: int = 1, armor=0):
         self.name: str = name
-        self.quality: str = quality
-        self.damage: int = damage
+        self.quality_level: int = quality_level
         self.armor: int = armor
-        # TODO: Add level for calculating damage
+        self.level: int = level
 
 
 class Weapon(Item):
-    def __init__(self, name=get_random_name(), quality='test', damage=1,):
-        super().__init__(name=name, quality=quality, damage=damage, armor=0)
+    def __init__(self, level: int, name=get_random_name(), quality_level=1):
+        super().__init__(level, name=name, quality_level=quality_level, armor=0)
+        self.damage = self.calculate_damage()
+        self.quality_name = get_quality(quality_level)
 
-    def calculate_damage(self):
-        pass
-        # TODO: using quality, and level, get damage amount
+    def calculate_damage(self) -> int:
+        return self.level * self.quality_level
 
 
 class Inventory:
-    def __init__(self, weapon=Weapon(), armor=Item(), helmet=Item(), boots=Item(), trinket=Item()):
+    def __init__(self, weapon=Weapon(1), armor=Item(0), helmet=Item(0), boots=Item(0), trinket=Item(0)):
         self.weapon: Weapon = weapon
         self.armor: Item = armor
         self.helmet: Item = helmet
