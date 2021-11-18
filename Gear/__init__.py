@@ -184,50 +184,88 @@ quality_switcher = {
 }
 
 
-def get_quality(quality_level):
+def get_quality_name(quality_level: int) -> str:
+    """
+    Retrieve the quality name from the quality switcher
+    :param quality_level: int: switch case quality level
+    :return: str: the quality name of the switch case
+    """
     return quality_switcher.get(quality_level, default)()
 
 
-def get_random_name() -> str:
+def get_random_gear_name() -> str:
+    """
+    Creates and returns a gear name with an adjective and a noun
+    :return: str: random gear name
+    """
     adj = GEAR_ADJECTIVE_LIST[randint(0, len(GEAR_ADJECTIVE_LIST) - 1)]
     noun = GEAR_NAME_LIST[randint(0, len(GEAR_NAME_LIST) - 1)]
     return f"{adj} {noun}"
 
 
 class Item:
-    def __init__(self, level: int, quality_level: int = 1, armor=0):
-        self.name: str = get_random_name()
+    def __init__(self, level: int, quality_level: int = 1):
+        """
+        Creates an Item
+        :param level: int: current level of Collected Item
+        :param quality_level: int: quality of the gear piece being created
+        """
+        self.name: str = get_random_gear_name()
         self.quality_level: int = quality_level
-        self.armor: int = armor
         self.level: int = level
 
 
 class Weapon(Item):
     def __init__(self, level: int, quality_level=1):
+        """
+        Creates a Weapon Item
+        :param level: int: current level of weapon
+        :param quality_level: int: quality of the gear piece being created
+        """
         super().__init__(level, quality_level=quality_level)
         self.damage = self.calculate_damage()
-        self.quality_name = get_quality(quality_level)
+        self.quality_name = get_quality_name(quality_level)
 
     def calculate_damage(self) -> int:
+        """
+        Calculates the damage a the weapon does
+        :return: int: Returns the value of calculated damage
+        """
         return self.level * self.quality_level
 
 
 class Armor(Item):
     def __init__(self, level: int, quality_level=1):
+        """
+        Creates an Armor Weapon
+        :param level: int: current level of Armor
+        :param quality_level: int: quality of the armor piece being created
+        """
         super(Armor, self).__init__(level, quality_level=quality_level)
         self.armor = self.calculate_armor()
-        self.quality_name = get_quality(quality_level)
+        self.quality_name = get_quality_name(quality_level)
 
     def calculate_armor(self):
+        """
+        Calculates the armor points of a piece of armor
+        :return: int: Returns the value of calculated damage
+        """
         return self.quality_level * self.level
 
 
 class Inventory:
     def __init__(self, weapon=Weapon(1), chest=Armor(1), helmet=Armor(2), boots=Armor(3), trinket=Item(4)):
+        """
+        Creates an inventory list
+        :param weapon: Weapon: Weapon to be used - default: random level 1 Weapon
+        :param chest:  Armor: Chest piece used by character - default: random level 1 Armor piece
+        :param helmet: Armor: Head piece used by character - default: random level 1 Armor piece
+        :param boots: Armor: Boot piece used by the character - default: random level 1 Armor piece
+        :param trinket: Item: Item piece used by the character - default: random level 1 Item piece
+        """
         self.weapon: Weapon = weapon
         self.chest: Armor = chest
         self.helmet: Armor = helmet
         self.boots: Armor = boots
         self.trinket: Item = trinket
 
-# TODO: Add docstrings
