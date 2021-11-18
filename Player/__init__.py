@@ -1,7 +1,13 @@
 from random import randint
 from typing import List
 
-from Gear import Inventory, Weapon, get_quality_name, Armor
+from terminaltables import AsciiTable
+
+from Gear import Inventory, Weapon, Armor
+
+
+def next_level(level):
+    return 500 * (level ^ 2) - (500 * level)
 
 
 class Player:
@@ -17,26 +23,39 @@ class Player:
         :param xp: current xp of character
         """
         self.name: str = name
-        self.health: int = health
+        self.current_health: int = health
+        self.max_health: int = health
         self.min_damage: int = min_damage
         self.max_damage: int = max_damage
         self.team: str = team
         self.inventory: Inventory = Inventory(chest=Armor(1))  # must have weapon, armor, helmet, boots, trinket
         self.level: int = level
         self.xp: int = xp
-        self.next_level: int  # TODO: how to gain xp
+        self.next_level: int = next_level(level)
 
     def view_inventory(self):
         """
         Prints current inventory information on screen
         """
-        print(f"HELMET: {self.inventory.helmet.name}")
-        print(f"CHEST: {self.inventory.chest.name}")
-        print(f"WEAPON: {self.inventory.weapon.name}")
-        print(f"WEAPON QUALITY: {get_quality_name(self.inventory.weapon.quality_level)}")
-        print(f"MAX_DAMAGE: {self.max_damage}")
-        print(f"BOOTS: {self.inventory.boots.name}")
-        print(f"TRINKET: {self.inventory.trinket.name}")
+        inv = self.inventory
+        table_data = [
+            ['slot', 'name', 'level', 'quality', 'stat', ],
+            ['Helmet', inv.helmet.name, inv.helmet.level,
+             inv.helmet.quality_name, f'{inv.helmet.stat_number} {inv.helmet.stat}'],
+            ['Chest', inv.chest.name, inv.chest.level,
+             inv.chest.quality_name, f'{inv.chest.stat_number} {inv.chest.stat}'],
+            ['Weapon', inv.weapon.name, inv.weapon.level,
+             inv.weapon.quality_name, f'{inv.weapon.stat_number} {inv.weapon.stat}'],
+            ['Boots', inv.boots.name, inv.boots.level,
+             inv.boots.quality_name, f'{inv.boots.stat_number} {inv.boots.stat}'],
+            ['Trinket', inv.trinket.name, inv.trinket.level,
+             inv.trinket.quality_name, f'{inv.trinket.stat_number} {inv.trinket.stat}']
+
+        ]
+        table = AsciiTable(table_data)
+        print('INVENTORY')
+        print(table.table)
+        self.view_player_stats()
 
     def set_weapon(self, level: int, quality_level: int = None):
         """
@@ -51,7 +70,19 @@ class Player:
         """
         Set the max damage of character
         """
-        self.max_damage = self.inventory.weapon.damage
+        self.max_damage = self.inventory.weapon.stat_number + self.inventory.trinket.stat_number
+
+    def view_player_stats(self):
+        """
+        Print the player's stats
+        """
+        table_data = [
+            ['name', 'health', 'level', "xp", 'max_damage'],
+            [f'{self.name}', f'{self.current_health}/{self.max_health}',
+             f'{self.level}', f'{self.xp}/{self.next_level}', f'{self.max_damage}']
+        ]
+        table = AsciiTable(table_data)
+        print(table.table)
 
 
 ENEMY_ADJECTIVES: List[str] = "Addicted;Alarming;Addled;Agile;Aggressive;Apathetic;Angry;Antagonistic;Arch;Astute" \
