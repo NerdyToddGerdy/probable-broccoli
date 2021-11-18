@@ -204,7 +204,7 @@ def get_random_gear_name() -> str:
 
 
 class Item:
-    def __init__(self, level: int, quality_level: int = 1):
+    def __init__(self, level: int, stat: str, quality_level: int = 1):
         """
         Creates an Item
         :param level: int: current level of Collected Item
@@ -212,7 +212,17 @@ class Item:
         """
         self.name: str = get_random_gear_name()
         self.quality_level: int = quality_level
+        self.quality_name: str = get_quality_name(quality_level)
+        self.stat: str = stat
         self.level: int = level
+        self.stat_number: int = self.calculate_stat()
+
+    def calculate_stat(self) -> int:
+        """
+        Calculates the stat point of an Item
+        :return: int: Returns the value of calculated damage
+        """
+        return self.level * self.quality_level
 
 
 class Weapon(Item):
@@ -222,16 +232,7 @@ class Weapon(Item):
         :param level: int: current level of weapon
         :param quality_level: int: quality of the gear piece being created
         """
-        super().__init__(level, quality_level=quality_level)
-        self.damage = self.calculate_damage()
-        self.quality_name = get_quality_name(quality_level)
-
-    def calculate_damage(self) -> int:
-        """
-        Calculates the damage a the weapon does
-        :return: int: Returns the value of calculated damage
-        """
-        return self.level * self.quality_level
+        super().__init__(level, stat='damage', quality_level=quality_level)
 
 
 class Armor(Item):
@@ -241,31 +242,21 @@ class Armor(Item):
         :param level: int: current level of Armor
         :param quality_level: int: quality of the armor piece being created
         """
-        super(Armor, self).__init__(level, quality_level=quality_level)
-        self.armor = self.calculate_armor()
-        self.quality_name = get_quality_name(quality_level)
-
-    def calculate_armor(self):
-        """
-        Calculates the armor points of a piece of armor
-        :return: int: Returns the value of calculated damage
-        """
-        return self.quality_level * self.level
+        super(Armor, self).__init__(level, stat='armor', quality_level=quality_level)
 
 
 class Inventory:
-    def __init__(self, weapon=Weapon(1), chest=Armor(1), helmet=Armor(2), boots=Armor(3), trinket=Item(4)):
+    def __init__(self, weapon=Weapon(1), chest=Armor(1), helmet=Armor(2), boots=Armor(3), trinket=Weapon(4)):
         """
         Creates an inventory list
         :param weapon: Weapon: Weapon to be used - default: random level 1 Weapon
         :param chest:  Armor: Chest piece used by character - default: random level 1 Armor piece
         :param helmet: Armor: Head piece used by character - default: random level 1 Armor piece
         :param boots: Armor: Boot piece used by the character - default: random level 1 Armor piece
-        :param trinket: Item: Item piece used by the character - default: random level 1 Item piece
+        :param trinket: Weapon: Item piece used by the character - default: random level 1 Item piece
         """
         self.weapon: Weapon = weapon
         self.chest: Armor = chest
         self.helmet: Armor = helmet
         self.boots: Armor = boots
-        self.trinket: Item = trinket
-
+        self.trinket: Weapon = trinket
