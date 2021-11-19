@@ -1,4 +1,12 @@
 [[package]]
+name = "simple-term-menu"
+version = "1.4.1"
+description = "A Python package which creates simple interactive menus on the command line."
+category = "main"
+optional = false
+python-versions = "~=3.5"
+
+[[package]]
 name = "terminaltables"
 version = "3.1.0"
 description = "Generate simple tables in terminals from a nested list of strings."
@@ -9,9 +17,13 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "2279f4938f03b3971fbd0dda4cf6fa4233230fbc9bc4a541f339dbf20ea506fe"
+content-hash = "cc5f5796e9edb8ac57d98a91f275a79abb16b8ef2c3ba96a4a2b3dec54c543c0"
 
 [metadata.files]
+simple-term-menu = [
+    {file = "simple-term-menu-1.4.1.tar.gz", hash = "sha256:401e7efc6726e195b8e62bfcede51298dc0daf8c5f043a521c8828191b0b012e"},
+    {file = "simple_term_menu-1.4.1-py3-none-any.whl", hash = "sha256:35cfbf6e855c347938c2da27a619cf0e212bc72a48bb86e43fa462ec7d7bccec"},
+]
 terminaltables = [
     {file = "terminaltables-3.1.0.tar.gz", hash = "sha256:f3eb0eb92e3833972ac36796293ca0906e998dc3be91fbe1f8615b331b853b81"},
 ]
