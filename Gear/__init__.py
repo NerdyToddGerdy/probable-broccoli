@@ -10,6 +10,8 @@ GEAR_NAME_LIST: List[str] = "Amulet;Bones;Bracelet;Book;Coin;Chalice;Claw;Charm;
                               "Tooth;Goblet;Earring;Horn;Idol;Knife;Mask;Necklace;Parchment;Pottery;Scroll;Skull" \
                               ";Stein;Totem;Trinket;Talisman;Vial;Vase".split(';')
 
+# TODO: Figure out how to split this up by gear type.
+
 
 def wretched():
     return "Wretched"
@@ -260,3 +262,5 @@ class Inventory:
         self.helmet: Armor = helmet
         self.boots: Armor = boots
         self.trinket: Weapon = trinket
+
+    # TODO: use the players class to choose type of Item,
