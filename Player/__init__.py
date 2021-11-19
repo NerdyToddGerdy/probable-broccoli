@@ -10,6 +10,7 @@ def next_level(level):
     return 500 * (level ^ 2) - (500 * level)
 
 
+# TODO: Create a player job class
 class Player:
     def __init__(self, name: str, team: str, health=10, max_damage=3, min_damage=1, level=1, xp=0):
         """
@@ -55,7 +56,6 @@ class Player:
         table = AsciiTable(table_data)
         print('INVENTORY')
         print(table.table)
-        self.view_player_stats()
 
     def set_weapon(self, level: int, quality_level: int = None):
         """
@@ -83,6 +83,9 @@ class Player:
         ]
         table = AsciiTable(table_data)
         print(table.table)
+
+    def add_xp(self, xp: int):
+        self.xp += xp
 
 
 ENEMY_ADJECTIVES: List[str] = "Addicted;Alarming;Addled;Agile;Aggressive;Apathetic;Angry;Antagonistic;Arch;Astute" \
