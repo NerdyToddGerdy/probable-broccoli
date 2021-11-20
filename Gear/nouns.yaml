@@ -1,0 +1,50 @@
+%YAML 1.2
+---
+Weapon:
+  - Axe
+  - Claw
+  - Dagger
+  - Knife
+  - Mace
+  - Spear
+  - Staff
+Head:
+  - Cap
+  - Earring
+  - Hat
+  - Horn
+  - Mask
+  - Skull
+  - Veil
+Body:
+  - Armor
+  - Shirt
+  - Jacket
+Foot:
+  - Boots
+  - Clogs
+  - Flip Flops
+  - Moccasins
+  - Sandals
+  - Shoes
+  - Slippers
+  - Sneakers
+Trinket:
+  - Coin
+  - Bones
+  - Book
+  - Charm
+  - Carving
+  - Etching
+  - Figurine
+  - Gold Tooth
+  - Goblet
+  - Idol
+  - Parchment
+  - Pottery
+  - Scroll
+  - Stein
+  - Totem
+  - Talisman
+  - Vial
+  - Vase
